@@ -1,5 +1,7 @@
+const { FaBullseye } = require("react-icons/fa");
+
 module.exports = {
-  root: true,
+  root: FaBullseye,
   env: { browser: true, es2020: true },
   extends: [
     'eslint:recommended',
