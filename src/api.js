@@ -4,7 +4,7 @@ const api = axios.create({
     baseURL: process.env.NODE_ENV === "production"
         ? "https://myconnections-backend.onrender.com/auth"
         : "http://localhost:8080/auth",
-    withCredentials: true, // Include cookies if needed
+    withCredentials: true,
 });
 
 export const googleAuth = async (code) => {
