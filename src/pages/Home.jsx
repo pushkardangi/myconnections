@@ -1,21 +1,19 @@
-import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Sidebar from "../components/sidebar"
 
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/auth/authSlice";
+
 const Home = () => {
   const navigate = useNavigate();
 
-  const [userInfo, setUserInfo] = useState(null);
+  const dispatch = useDispatch();
 
-  useEffect(()=>{
-    const data = localStorage.getItem('user-info');
-    const userData = JSON.parse(data);
-    setUserInfo(userData);
-  },[]);
+  const userInfo = useSelector((state) => state.auth.userInfo);
 
   const handleLogout = () =>{
-    localStorage.removeItem('user-info');
+    dispatch(logout());
     navigate('/login');
   }
 

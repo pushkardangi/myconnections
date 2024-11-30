@@ -1,22 +1,26 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
 import { googleAuth } from "../api";
-import { useNavigate } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+import { login } from "../redux/auth/authSlice";
 
 const Login = () => {
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const responseGoogle = async (authResult) =>{
     try{
       if(authResult["code"]){
         const result = await googleAuth(authResult['code']);
 
-        const { email, name, image } = result.data.user;
+        const { email, name, image } = result.user;
+        const token = result.token;
         
-        const token = result.data.token;
-        const userData = {email, name, image, token};
+        const userInfo = {email, name, image, token};
 
-        localStorage.setItem('user-info', JSON.stringify(userData));
+        dispatch(login(userInfo));
 
         navigate('/home')
       } // (3)
@@ -24,7 +28,6 @@ const Login = () => {
     catch (error){
       console.error("Error while requesting google code:", error)
     }
-
   }
 
   const handleGoogleLogin = useGoogleLogin({
