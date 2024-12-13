@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
-import { googleAuth } from "../api";
+import { googleAuth } from "../api"; // (3)
 
 import { useDispatch } from "react-redux";
 import { login } from "../redux/auth/authSlice";
@@ -13,7 +13,7 @@ const Login = () => {
   const responseGoogle = async (authResult) =>{
     try{
       if(authResult["code"]){
-        const result = await googleAuth(authResult['code']);
+        const result = await googleAuth(authResult['code']); // (4) sends code to the backend
 
         const { email, name, image } = result.user;
         const token = result.token;
@@ -31,7 +31,7 @@ const Login = () => {
   }
 
   const handleGoogleLogin = useGoogleLogin({
-    onSuccess: responseGoogle, // (2)
+    onSuccess: responseGoogle, // (2) request authentication code
     onError: responseGoogle,
     flow: "auth-code"
   })

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: process.env.NODE_ENV === "production"
+    baseURL: import.meta.env.MODE === "production"
         ? "https://myconnections-backend.onrender.com/auth"
         : "http://localhost:8080/auth",
     withCredentials: true,
