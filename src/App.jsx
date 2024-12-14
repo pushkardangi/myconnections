@@ -24,12 +24,12 @@ const PrivateRoute = ({element}) => {
 const router = createBrowserRouter(
   [
     {
-      path: "/",
-      element: <Navigate to="/login" />, // Redirect from "/" to "/login"
-    },
-    {
       path: "/login",
       element: <GoogleOAuthWrapper />,
+    },
+    {
+      path: "/",
+      element: <Navigate to="/login" />,
     },
     {
       path: "/home",
