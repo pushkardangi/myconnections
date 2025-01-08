@@ -93,6 +93,7 @@ const Login = () => {
                         </div>
                         <form onSubmit={handleSubmit}>
                             <InputField
+                                id="email"
                                 label="Email"
                                 type="email"
                                 placeholder="Enter your email"
@@ -101,6 +102,7 @@ const Login = () => {
                                 onChange={handleChange}
                             />
                             <InputField
+                                id="password"
                                 label="Password"
                                 type="password"
                                 placeholder="Enter your password"

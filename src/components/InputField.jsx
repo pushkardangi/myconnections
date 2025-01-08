@@ -1,10 +1,11 @@
-const InputField = ({ label, type, name, value, placeholder="", onChange }) => {
+const InputField = ({ id, label, type, name, value, placeholder="", onChange }) => {
     return (
         <div className="my-4">
             <label htmlFor={name} className="text-sm font-medium text-slate-700">
                 {label}
             </label>
             <input
+                id={id}
                 type={type}
                 name={name}
                 value={value}

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
-import { googleAuth } from "../api"; // (3)
+import { googleAuth } from "../api.js"; // (3)
 
 import { useDispatch } from "react-redux";
 import { login } from "../redux/auth/authSlice";
@@ -15,10 +15,7 @@ const GoogleLoginBtn = () => {
             if (authResult["code"]) {
                 const result = await googleAuth(authResult["code"]); // (4) sends code to the backend
 
-                const { email, name, image } = result.user;
-                const token = result.token;
-
-                const userInfo = { email, name, image, token };
+                const userInfo = result.user;
 
                 dispatch(login(userInfo));
 

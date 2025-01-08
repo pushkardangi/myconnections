@@ -2,8 +2,8 @@ import axios from "axios";
 
 const api = axios.create({
     baseURL: import.meta.env.MODE === "production"
-        ? "https://myconnections-backend.onrender.com/auth"
-        : "http://localhost:8080/auth",
+        ? "https://myconnections-backend.onrender.com"
+        : "http://localhost:3000",
     withCredentials: true,
 });
 
@@ -13,10 +13,10 @@ export const googleAuth = async (code) => {
     }
 
     try {
-        const response = await api.get(`/google?code=${code}`);
+        const response = await api.get(`/auth/google?code=${code}`);
         return response.data;
     } catch (error) {
-        console.error("Google Auth Error:", error.message);
+        console.error("googleAuth Error:", error);
         throw error;
     }
 };
