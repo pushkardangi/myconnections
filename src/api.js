@@ -20,3 +20,12 @@ export const googleAuth = async (code) => {
         throw error;
     }
 };
+
+export const logoutUser = async () => {
+    try {
+        const response = await api.get("/auth/logout");
+        return response;
+    } catch (error) {
+        console.log("Error while logging out!", error);
+    }
+}
